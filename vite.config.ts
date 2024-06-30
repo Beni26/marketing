@@ -23,5 +23,10 @@ export default defineConfig({
     rollupOptions: {
       external: ['prop-types']
     }
+  },
+  resolve: {
+    alias: {
+      'prop-types': 'prop-types/index.js'
+    }
   }
 });
