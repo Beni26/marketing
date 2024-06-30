@@ -9,7 +9,6 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 // Define types for Swiper components
-import type { Swiper as SwiperType } from "swiper";
 
 interface Props {}
 
@@ -17,7 +16,7 @@ const Slider: React.FC<Props> = () => {
   const progressCircle = useRef<SVGSVGElement>(null);
   const progressContent = useRef<HTMLSpanElement>(null);
 
-  const onAutoplayTimeLeft = (s: SwiperType, time: number, progress: number) => {
+  const onAutoplayTimeLeft = ( time: number, progress: number) => {
     if (progressCircle.current && progressContent.current) {
       progressCircle.current.style.setProperty("--progress", (1 - progress).toString());
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
@@ -39,7 +38,7 @@ const Slider: React.FC<Props> = () => {
         
         navigation={false}
         modules={[Autoplay, Pagination, Navigation]}
-        onAutoplayTimeLeft={onAutoplayTimeLeft}
+        onAutoplayTimeLeft={(_, time, progress) => onAutoplayTimeLeft(time, progress)}
         className="mySwiper rounded-xl"
       >
         <SwiperSlide><img src="https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/slider1.jpg" alt="slider1" /></SwiperSlide>
