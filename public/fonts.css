@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Vazir";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Vazirmatn-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Vazir";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Vazirmatn-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Vazir";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/fonts//Vazirmatn-Black.woff2") format("woff2");
+}
+
+/* --e-global-color-primary: #EE384E;
+--e-global-color-secondary: #000000;
+--e-global-color-text: #7A7A7A;
+--e-global-color-accent: #333333;
+--e-global-color-7bd8c6d: #EE384E;
+--e-global-color-159b9e5: #F5F5F5;
+--e-global-color-c50c594: #333333; */

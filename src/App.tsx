@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import Auth from "./pages/Auth";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import Home from "./pages/Home";
+import AppLayout from "./ui/AppLayout";
+import { Provider } from "react-redux";
+import store from "./store";
+import Product from "./pages/Product";
+import Shop from "./pages/Shop";
+import ContactUs from "./pages/ContactUs";
+import AboutUs from "./pages/AboutUs";
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <Toaster />
+        <div>
+          <Routes>
+            <Route path="/auth" element={<Auth />} />
+            <Route element={<AppLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/about-us" element={<AboutUs />} />
+            </Route>
+          </Routes>
+        </div>
+      </QueryClientProvider>
+    </Provider>
+  );
 }
 
-export default App
+export default App;
