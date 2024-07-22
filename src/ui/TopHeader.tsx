@@ -6,17 +6,23 @@ import { RiMenu3Line } from "react-icons/ri";
 import HamburgerMenu from "./HamburgerMenu";
 import { useState } from "react";
 import Profile from "../features/User/Profile";
-
-
+import CartDrawer from "../features/Orders/CartDrawer";
+import MenuList from "../features/Menu/MenuList";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { toPersianNumbers } from "../utils/topersianNumbers";
 
 const TopHeader: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>("mainMenu");
+  const items = useSelector((state: RootState) => state.cart.items);
 
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-[auto_1fr_1fr_auto] max-h-[200px] bg-white gap-5  items-center p-5 rounded-lg shadow-[0_4px_60px_0_rgba(0,0,0,0.039)]">
+    <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-[auto_1fr_1fr_auto] max-h-[200px] bg-white gap-5  items-center pt-5 pb-5 rounded-lg shadow-[0_4px_60px_0_rgba(0,0,0,0.039)]">
       <button
         className="bg-gray-100 p-3 rounded-lg ml-2 text-2xl   lg:hidden "
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpenMenu(!isOpenMenu)}
       >
         <RiMenu3Line />
       </button>
@@ -33,10 +39,13 @@ const TopHeader: React.FC = () => {
       </div>
       <div className="justify-self-end flex">
         <Profile />
-        <button className="bg-gray-100 p-3 rounded-lg text-2xl relative">
+        <button
+          className="bg-gray-100 p-3 rounded-lg text-2xl relative"
+          onClick={() => setIsOpenCartDrawer(!isOpenCartDrawer)}
+        >
           <CiShoppingCart />
           <span className="absolute -top-9 -left-6 flex items-center justify-center bg-primary text-white font-bold text-xs rounded-full w-6 h-6">
-            10
+           {toPersianNumbers(items.length)}
           </span>
         </button>
       </div>
@@ -52,7 +61,25 @@ const TopHeader: React.FC = () => {
           <IoCall />
         </div>
       </div>
-      <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+      <HamburgerMenu
+        isOpen={isOpenMenu}
+        setIsOpen={setIsOpenMenu}
+        openFrom="right"
+      >
+        <MenuList
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setIsOpen={setIsOpenMenu}
+        />
+      </HamburgerMenu>
+
+      <HamburgerMenu
+        isOpen={isOpenCartDrawer}
+        setIsOpen={setIsOpenCartDrawer}
+        openFrom="left"
+      >
+        <CartDrawer setIsOpen={setIsOpenCartDrawer}  carts={items}/>
+      </HamburgerMenu>
     </div>
   );
 };

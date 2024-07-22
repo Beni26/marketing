@@ -1,22 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { CgProfile } from "react-icons/cg";
 import { HiOutlineUser } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { LuLogIn, LuShoppingCart } from "react-icons/lu";
-import { TbLogout } from "react-icons/tb";
+import { LuLogIn } from "react-icons/lu";
 import useProfile from "./useProfile";
 import { Link } from "react-router-dom";
 import UseLogOut from "../authentication/UseLogOut";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Profile = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoading, data } = useProfile();
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  const { isLoading, data } = useProfile(isLoggedIn);
   const logout = UseLogOut();
-
   const handleLogout = () => {
-      logout();
+    logout();
   };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -54,16 +54,22 @@ const Profile = () => {
             >
               <ul>
                 <li className="p-3 border-b hover:bg-slate-100 cursor-pointer flex items-center gap-4">
-                  <CgProfile /> {data.fullName ? data.fullName : "کاربر میهمان"}
+                  <Link  to="/my-account">داشتبورد</Link>
                 </li>
                 <li className="p-3 border-b hover:bg-slate-100 cursor-pointer flex items-center gap-4">
-                  <LuShoppingCart /> سفارش ها
+                  سفارشات
+                </li>
+                <li className="p-3 border-b hover:bg-slate-100 cursor-pointer flex items-center gap-4">
+                  ویرایش آدرس
+                </li>
+                <li className="p-3 border-b hover:bg-slate-100 cursor-pointer flex items-center gap-4">
+                  جزئیات حساب
                 </li>
                 <li
                   className="p-3  hover:bg-slate-100 cursor-pointer flex items-center gap-4"
                   onClick={handleLogout}
                 >
-                  <TbLogout /> خروج از حساب
+                  خروج از حساب
                 </li>
               </ul>
             </div>

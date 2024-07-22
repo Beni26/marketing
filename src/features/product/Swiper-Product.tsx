@@ -12,24 +12,24 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
 const images = [
   {
-    src: "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min.png",
+    src: "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
     zoomSrc:
-      "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min.png", // تصویر با کیفیت بالاتر
+      "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", // تصویر با کیفیت بالاتر
   },
   {
-    src: "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min-1-min.png",
+    src: "https://dkstatics-public.digikala.com/digikala-products/29576402c3bb3f6fe20ef86a08a035d060c84396_1673702294.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
     zoomSrc:
-      "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min-1-min.png", // تصویر با کیفیت بالاتر
+      "https://dkstatics-public.digikala.com/digikala-products/29576402c3bb3f6fe20ef86a08a035d060c84396_1673702294.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90", // تصویر با کیفیت بالاتر
   },
   {
-    src: "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min-2-min.png",
+    src: "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
     zoomSrc:
-      "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min-2-min.png", // تصویر با کیفیت بالاتر
+      "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90", // تصویر با کیفیت بالاتر
   },
   {
-    src: "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min-3-min.png",
+    src: "https://dkstatics-public.digikala.com/digikala-products/5052e56e58254ac7ebda2fbd38925ad8d1d23713_1673437710.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
     zoomSrc:
-      "https://theme.fullwp.ir/ecolive/home-10/wp-content/uploads/2023/03/%D8%A8%D9%86-%D9%85%D8%A7%D9%86%D9%88-min-3-min.png", // تصویر با کیفیت بالاتر
+      "https://dkstatics-public.digikala.com/digikala-products/5052e56e58254ac7ebda2fbd38925ad8d1d23713_1673437710.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90", // تصویر با کیفیت بالاتر
   },
 ];
 

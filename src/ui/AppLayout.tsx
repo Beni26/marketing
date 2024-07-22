@@ -2,14 +2,15 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-
-const AppLayout: React.FC = () => {
+type AppLayoutProps = {
+  children?:React.ReactNode;
+}
+const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
-    <div >
+    <div>
       <Header />
-      {/* <div>App Sidebar</div> */}
       <div>
-        <Outlet />
+        {children || <Outlet />}
       </div>
       <Footer />
     </div>

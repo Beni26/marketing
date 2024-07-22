@@ -9,6 +9,8 @@ import logo from "../../assets/images/logo.png";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { loginSuccess } from "./authSlice";
+import { useDispatch } from "react-redux";
 
 const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
   phone,
@@ -20,6 +22,7 @@ const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
   const [isTimerFinished, setIsTimerFinished] = useState<boolean>(false);
   const navigate = useNavigate();
   const { control, handleSubmit, formState: { errors }, setValue } = useForm<{ otp: string }>();
+  const dispatch = useDispatch();
 
 
 
@@ -74,6 +77,7 @@ const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
         const { securityKey, token } = loginResponseData.data;
         Cookies.set("securityKey", securityKey);
         Cookies.set("token", token);
+        dispatch(loginSuccess());
         navigate("/");
       } catch (error) {
         console.log(error);

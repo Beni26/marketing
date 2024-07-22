@@ -41,7 +41,6 @@ app.interceptors.response.use(
             originalConfig._retry = true;
             try {
                 const securityKey = Cookies.get('securityKey');
-
                 const refreshToken : TokenBody = {
                     securityKey: securityKey || '',
                     deviceType: 1,
@@ -60,7 +59,7 @@ app.interceptors.response.use(
                 } 
             } catch (error) {
 
-                window.location.href = '/auth'
+                // window.location.href = '/auth'
                 return Promise.reject(error)
                 
             }

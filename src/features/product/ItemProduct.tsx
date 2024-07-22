@@ -5,7 +5,7 @@ import truncateText from "../../utils/truncateText";
 
 const ItemProduct = () => {
   return (
-    <div className="relative    group  transition-all duration-500 h-[354px]">
+    <div className="relative    group  transition-all duration-500 h-[354px] w-full">
       <div className="text-right border border-cl_border p-5 rounded-3xl absolute w-full h-full left-0 top-0 bottom-0 bg-white group-hover:h-[410px] group-hover:z-20">
         <div className="relative w-[203px] h-[155px]">
           <img

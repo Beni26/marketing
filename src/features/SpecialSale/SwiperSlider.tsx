@@ -7,8 +7,16 @@ import { HiMiniShoppingBag } from "react-icons/hi2";
 import truncateText from "../../utils/truncateText";
 import { sliders } from "./data";
 import { Pagination, Navigation } from "swiper/modules";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { addItem } from "../Orders/CartSlice";
 
 const SwiperSlider = () => {
+  const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+  const handleAddToCart = (id: number, title: string, price: number, productFirstImage:string) => {
+    dispatch(addItem({ id, title, price, quantity: count, productFirstImage }));
+  };
   return (
     <div className="overflow-hidden h-[450px]">
       <Swiper
@@ -34,7 +42,6 @@ const SwiperSlider = () => {
             slidesPerView: 4,
             spaceBetween: 50,
           },
-          
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
@@ -48,7 +55,7 @@ const SwiperSlider = () => {
             <div className="text-right">
               <div className="relative w-[253px] h-[197px]">
                 <img
-                  src={slide.img}
+                  src={slide.productFirstImage}
                   alt={slide.title}
                   className="cursor-pointer"
                 />
@@ -72,24 +79,40 @@ const SwiperSlider = () => {
               </div>
               <div className="mt-2 relative">
                 <span className="text-primary font-bold text-xl">
-                  {toPersianNumbersWithComma(slide.price)} تومان 
+                  {toPersianNumbersWithComma(slide.price)} تومان
                 </span>
                 <del className="text-md font-bold text-gray-300">
                   {toPersianNumbersWithComma(slide.firstPrice)} تومان
                 </del>
                 <div className="absolute w-full flex items-center justify-between mt-3 top-[-23px] group-hover:top-0 group-hover:relative transition-all duration-200">
                   <div className="flex items-center justify-center invisible group-hover:visible ">
-                    <button className="flex items-center justify-center w-9 h-10 border border-cl_border rounded-r-md bg-white">
+                    <button
+                      className="flex items-center justify-center w-9 h-10 border border-cl_border rounded-r-md bg-white"
+                      onClick={() => setCount((prev) => prev + 1)}
+                    >
                       +
                     </button>
                     <div className="flex items-center justify-center w-9 h-10 border-t border-b border-cl_border bg-gray-100 text-sm">
-                      {toPersianNumbersWithComma(4)}
+                      {toPersianNumbersWithComma(count)}
                     </div>
-                    <button className="flex items-center justify-center w-9 h-10 border border-cl_border rounded-l-md bg-white">
+                    <button
+                      className="flex items-center justify-center w-9 h-10 border border-cl_border rounded-l-md bg-white"
+                      onClick={() =>
+                        setCount((prev) => (prev > 1 ? prev - 1 : 1))
+                      }
+                    >
                       -
                     </button>
                   </div>
-                  <div className="bg-gray-100 h-[50px] w-[50px] flex items-center justify-center rounded-xl rounded-bl-[28px] font-bold text-gray-400 transition-all ease-in-out duration-500 group-hover:bg-primary group-hover:text-white hover:rounded-bl-xl cursor-pointer">
+                  <div
+                    className="bg-gray-100 h-[50px] w-[50px] flex items-center justify-center
+                   rounded-xl rounded-bl-[28px] font-bold text-gray-400 transition-all
+                    ease-in-out duration-500 group-hover:bg-primary group-hover:text-white
+                     hover:rounded-bl-xl cursor-pointer"
+                    onClick={() =>
+                      handleAddToCart(slide.id, slide.title, slide.price, slide.productFirstImage)
+                    }
+                  >
                     <HiMiniShoppingBag />
                   </div>
                 </div>

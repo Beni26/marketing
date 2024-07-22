@@ -10,5 +10,5 @@ export const login = (data:object)=>{
     return http.post("Account/Login",data)
 }
 export const getUser = ()=>{
-    return http.post("Profile/GetProfile")
+    return http.post("Profile/GetProfile").then(({data})=>  data.data)
 }

@@ -5,16 +5,29 @@ import {
   FieldErrors,
 } from "react-hook-form";
 
-interface TextFieldProps<T extends FieldValues> {
+interface BaseProps<T extends FieldValues> {
   label?: string;
   name: Path<T>; // Ensure the name is a string
   type: string;
   register: UseFormRegister<T>;
-  required?: boolean;
+  placeholder?: string;
+  className?:string;
+}
+// نوع کمکی برای props با `required`
+interface RequiredProps<T extends FieldValues> extends BaseProps<T> {
+  required: true;
   validationSchema: object;
   errors: FieldErrors<T>;
-  placeholder?: string;
 }
+
+// نوع کمکی برای props بدون `required`
+interface OptionalProps<T extends FieldValues> extends BaseProps<T> {
+  required?: false;
+  validationSchema?: object;
+  errors?: FieldErrors<T>;
+}
+
+type TextFieldProps<T extends FieldValues> = RequiredProps<T> | OptionalProps<T>;
 
 const TextField = <T extends FieldValues>({
   label,
@@ -25,9 +38,10 @@ const TextField = <T extends FieldValues>({
   validationSchema,
   errors,
   placeholder,
+  className,
 }: TextFieldProps<T>) => {
   return (
-    <div>
+    <div className={className}>
       {label && (
         <label className="mb-1 block" htmlFor={name}>
           {label}

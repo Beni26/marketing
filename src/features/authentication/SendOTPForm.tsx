@@ -30,7 +30,7 @@ const SendOTPForm: React.FC<SendOTPFormProps> = ({
           validationSchema={{
             required: "لطفا این قسمت را خالی نگذارید",
             minLength: {
-              value: 10,
+              value: 1,
               message: "شماره موبایل شما نامعتبر است",
             },
           }}

@@ -1,8 +1,19 @@
 import { PiArrowLeftDuotone } from "react-icons/pi";
 import { toPersianNumbersWithComma } from "../../utils/topersianNumbers";
 import { sliders } from "../SpecialSale/data";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Orders/CartSlice";
 
 const LatestProduct = () => {
+  const dispatch = useDispatch();
+  const handleAddToCart = (
+    id: number,
+    title: string,
+    price: number,
+    productFirstImage: string
+  ) => {
+    dispatch(addItem({ id, title, price, quantity: 1, productFirstImage }));
+  };
   return (
     <div className="container xl:max-w-screen-xl mb-5 pl-4 pr-4 md:pl-0 md:pr-0">
       <div className="flex items-center justify-center lg:justify-between mb-9 flex-col lg:flex-row space-y-5 lg:space-y-1">
@@ -28,18 +39,15 @@ const LatestProduct = () => {
         </div>
       </div>
 
-
-
-
-
-      
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-3">
-        {sliders.map((slide,index) => (
-          <div className="flex relative group items-center border border-cl_border rounded-md  p-2 pl-1 pr-1 w-full" key={index}>
+        {sliders.map((slide, index) => (
+          <div
+            className="flex relative group items-center border border-cl_border rounded-md  p-2 pl-1 pr-1 w-full"
+            key={index}
+          >
             <div>
               <img
-                src={slide.img}
+                src={slide.productFirstImage}
                 alt=""
                 className="w-[130px] h-[110px]"
               />
@@ -57,7 +65,19 @@ const LatestProduct = () => {
                 </p>
               </div>
             </div>
-            <button className="absolute left-2 bg-gray-100 w-8 h-8  text-gray-300 flex items-center justify-center text-2xl rounded-md rounded-bl-[15px] transition-all ease-in-out duration-300 group-hover:bg-gray-200 group-hover:text-black hover:rounded-bl-md">
+            <button
+              className="absolute left-2 bg-gray-100 w-8 h-8  text-gray-300 flex items-center
+             justify-center text-2xl rounded-md rounded-bl-[15px] transition-all ease-in-out duration-300
+              group-hover:bg-gray-200 group-hover:text-black hover:rounded-bl-md"
+              onClick={() =>
+                handleAddToCart(
+                  slide.id,
+                  slide.title,
+                  slide.price,
+                  slide.productFirstImage
+                )
+              }
+            >
               +
             </button>
           </div>

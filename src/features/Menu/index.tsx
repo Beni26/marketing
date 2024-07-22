@@ -6,7 +6,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { MenuProps } from "./type";
 import MenuPegs from "./MenuPegs";
 
-const Menu: React.FC<MenuProps> = ({ categories=[],isLoading }) => {
+const Menu: React.FC<MenuProps> = ({ categories = [], isLoading }) => {
   const [openCategory, setOpenCategory] = useState<string | null>("");
 
   const handleMouseEnter = (categoryId: string) => {
@@ -24,7 +24,7 @@ const Menu: React.FC<MenuProps> = ({ categories=[],isLoading }) => {
             <p className="flex items-center gap-2 font-bold text-accent p-2">
               <FiMenu /> دسته بندی محصولات
             </p>
-            {!isLoading && categories.length > 0  && (
+            {!isLoading && categories.length > 0 && (
               <ul className="absolute right-0 bg-white border rounded-lg w-full top-[56px]  hidden group-hover:block z-10">
                 {categories.map((category, index) => (
                   <li
@@ -56,8 +56,7 @@ const Menu: React.FC<MenuProps> = ({ categories=[],isLoading }) => {
         </ul>
       </div>
       <div className="">
-            <MenuPegs />
-
+        <MenuPegs />
       </div>
     </div>
   );

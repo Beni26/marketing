@@ -58,6 +58,7 @@ export default function Product() {
       </div>
       <div className="overflow-hidden h-[530px] mt-10  ">
         <h1 className="text-center text-primary text-4xl ">محصولات مرتبط</h1>
+        
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -86,24 +87,25 @@ export default function Product() {
           modules={[Pagination, Navigation]}
           className="mySwiper sliderSpecials mt-12 !w-[90%] md:!w-full"
         >
-          <SwiperSlide className="rounded-3xl p-5 border-2 border-cl_border group  transition-all duration-500">
+          <SwiperSlide className="rounded-3xl p-5  group  transition-all duration-500 ">
             <ItemProduct />
           </SwiperSlide>
-          <SwiperSlide className="rounded-3xl p-5 border-2 border-cl_border group  transition-all duration-500">
+          <SwiperSlide className="rounded-3xl p-5  group  transition-all duration-500 ">
             <ItemProduct />
           </SwiperSlide>
-          <SwiperSlide className="rounded-3xl p-5 border-2 border-cl_border group  transition-all duration-500">
+          <SwiperSlide className="rounded-3xl p-5  group  transition-all duration-500 ">
             <ItemProduct />
           </SwiperSlide>
-          <SwiperSlide className="rounded-3xl p-5 border-2 border-cl_border group  transition-all duration-500">
+          <SwiperSlide className="rounded-3xl p-5  group  transition-all duration-500 ">
             <ItemProduct />
           </SwiperSlide>
-          <SwiperSlide className="rounded-3xl p-5 border-2 border-cl_border group  transition-all duration-500">
+          <SwiperSlide className="rounded-3xl p-5  group  transition-all duration-500 ">
             <ItemProduct />
           </SwiperSlide>
-          <SwiperSlide className="rounded-3xl p-5 border-2 border-cl_border group  transition-all duration-500">
+          <SwiperSlide className="rounded-3xl p-5  group  transition-all duration-500 ">
             <ItemProduct />
           </SwiperSlide>
+
         </Swiper>
       </div>
     </div>
