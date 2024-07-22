@@ -1,5 +1,5 @@
 export const jalaliToGregorian = (jy: number, jm: number, jd: number): Date => {
-    const gy = jy + 621;
+    let gy = jy + 621;
     let days = jd;
   
     if (jm < 7) {

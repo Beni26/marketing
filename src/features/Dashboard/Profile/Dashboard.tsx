@@ -38,8 +38,8 @@ const Dashboard = () => {
   //   id: "123456",
   //   fullName: "John Doe",
   // };
-  const { isLoading, data } = useUser();
-  const { isEditing, profileEdit } = useEditProfile();
+  const {  data } = useUser();
+  const {  profileEdit } = useEditProfile();
 
   const {
     register,

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import UseAuthorize from "../features/authentication/UseAuthorize";
-import Loading from "./Loading";
 
 
 
