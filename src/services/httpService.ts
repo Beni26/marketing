@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { TokenBody } from "../features/authentication/type";
 
 
-const BASE_URL = "http://178.252.151.68:1407/api";
+const BASE_URL = "https://tranteestapi.abiports.com/api";
 const app = axios.create({
     baseURL:BASE_URL,
     // withCredentials:true,
