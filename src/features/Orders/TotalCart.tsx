@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import { toPersianNumbersWithComma } from "../../utils/topersianNumbers";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
 
-const TotalCart = () => {
-  const items = useSelector((state: RootState) => state.cart.items) || [];
 
-  const totalPrice = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+
+type TotalCartProps = {
+  totalPrice:number
+}
+const TotalCart:React.FC<TotalCartProps> = ({totalPrice}) => {
+
 
   return (
     <div className="border border-cl_border rounded-lg p-7 space-y-5">

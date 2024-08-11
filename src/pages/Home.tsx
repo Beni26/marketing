@@ -4,6 +4,7 @@ import SpecialSale from "../features/SpecialSale";
 import Categories from "../features/Categories";
 import Brand from "../features/Brand";
 import LatestProduct from "../features/product/LatestProduct";
+import Sliders from "../features/Sliders";
 
 interface HomeProps {}
 
@@ -13,7 +14,7 @@ const Home: React.FC<HomeProps> = () => {
       <div className="container xl:max-w-screen-xl mb-20 pl-4 pr-4 md:pl-0 md:pr-0">
         <div className="grid grid-cols-3 mt-5 gap-4 mb-10">
           <div className="col-span-3 lg:col-span-2 rounded-md">
-            <Slider />
+            <Sliders />
           </div>
           <div className="col-span-3 lg:col-span-1 space-y-3">
             <div className="flex items-center justify-around bg-rose-100 rounded-xl p-1">

@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './features/authentication/authSlice';
 import cartReducer from './features/Orders/CartSlice';
+import drawerReducer from './features/ShareSlice/drawerSlice';
 
 // تنظیمات پیکربندی برای اسلایس cart که می‌خواهیم پرسیست شود
 const cartPersistConfig = {
@@ -13,6 +14,8 @@ const cartPersistConfig = {
 const rootReducer = combineReducers({
   auth: authReducer, // این اسلایس پرسیست نمی‌شود
   cart: persistReducer(cartPersistConfig, cartReducer), // این اسلایس پرسیست می‌شود
+  drawer: drawerReducer,
+
 });
 
 const store = configureStore({
@@ -39,6 +42,7 @@ export type AppDispatch = typeof store.dispatch;
 // import { configureStore } from "@reduxjs/toolkit";
 // import authReducer from "./features/authentication/authSlice";
 // import cartReducer  from "./features/Orders/CartSlice";
+import drawerSlice from './features/ShareSlice/drawerSlice';
 
 // const store = configureStore({
 //     reducer :{

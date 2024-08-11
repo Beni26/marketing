@@ -1,9 +1,12 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { TokenBody } from "../features/authentication/type";
+import { loginSuccess, logoutSuccess } from "../features/authentication/authSlice";
+import { store } from "../store";
 
 
-const BASE_URL = "http://178.252.151.68:1407/api";
+export const BASE_URL = "https://tranteestapi.abiports.com/api";
+export const BASE_URL_SITE = "https://tranteestapi.abiports.com";
 const app = axios.create({
     baseURL:BASE_URL,
     // withCredentials:true,
@@ -39,6 +42,8 @@ app.interceptors.response.use(
         const originalConfig = err.config;
         if(err.response.status === 401 && !originalConfig._retry){
             originalConfig._retry = true;
+            const dispatch = store.dispatch; // استفاده از dispatch از store
+
             try {
                 const securityKey = Cookies.get('securityKey');
                 const refreshToken : TokenBody = {
@@ -49,21 +54,26 @@ app.interceptors.response.use(
                   };
                   const formData = new FormData();
                   formData.append("body", JSON.stringify(refreshToken));
-                const {data} = await axios.post(`${BASE_URL}/Account/Login`,formData)
+                  const {data} = await axios.post(`${BASE_URL}/Account/Login`,formData)
                 
                 if(data){
                     const { securityKey,token } = data.data;          
                     Cookies.set("securityKey", securityKey);
                     Cookies.set("token", token);
+                    dispatch(loginSuccess());
                     return app(originalConfig)
                 } 
             } catch (error) {
-
-                // window.location.href = '/auth'
+                Cookies.remove("securityKey");
+                Cookies.remove("token");
+                dispatch(logoutSuccess());
+                window.location.href = '/auth'
                 return Promise.reject(error)
                 
             }
         }
+        return Promise.reject(err);
+
     }
 );
 

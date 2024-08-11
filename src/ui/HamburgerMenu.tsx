@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 type HamburgerMenuProps = {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: (isOpen: boolean) => void; // تغییر نوع setIsOpen
   children: React.ReactNode;
   openFrom: "left" | "right"; // New prop to determine opening direction
 };

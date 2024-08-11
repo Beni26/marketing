@@ -6,10 +6,10 @@ import { getHome } from '../services/homeService';
 
 const useGetHome = () => {
   const {data, isLoading}=  useQuery({
-      queryKey:["owner-project"],
+      queryKey:["home"],
       queryFn:getHome,
   })
-  const {categories,discounts,specials,productBoxDtos,sliders} = data || [];
+  const {categories,discounts,specials,productBoxDtos,sliders,} = data || [];
   return {isLoading, categories,discounts,specials,productBoxDtos,sliders}
   
 }
