@@ -5,8 +5,7 @@ import { loginSuccess, logoutSuccess } from "../features/authentication/authSlic
 import { store } from "../store";
 
 
-export const BASE_URL = "https://tranteestapi.abiports.com/api";
-export const BASE_URL_SITE = "https://tranteestapi.abiports.com";
+const BASE_URL = "http://178.252.151.68:1407/api";
 const app = axios.create({
     baseURL:BASE_URL,
     // withCredentials:true,
