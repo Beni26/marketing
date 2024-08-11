@@ -10,7 +10,7 @@ const useGetProduct = ({ formData,shouldFetch }: useGetProductProps) => {
       queryKey: ['product', formData],
       queryFn: () => getProducts(formData),
       enabled:shouldFetch,
-      cacheTime: 0,
+      staleTime: 0, // می‌توانید مدت زمان "تازه" بودن داده‌ها را تعیین کنید
 
     });
     const products = data ||[]; // مقدار پیش‌فرض به آرایه خالی

@@ -1,8 +1,5 @@
-import CartTable from "../features/Orders/CartTable";
 import ContainerCart from "../features/Orders/ContainerCart";
-import { Discount } from "../features/Orders/Discount";
-import TotalCart from "../features/Orders/TotalCart";
-import UseCheckOrder from "../hooks/UseCheckOrder";
+
 
 const Cart = () => {
   return (

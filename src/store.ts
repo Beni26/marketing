@@ -42,7 +42,7 @@ export type AppDispatch = typeof store.dispatch;
 // import { configureStore } from "@reduxjs/toolkit";
 // import authReducer from "./features/authentication/authSlice";
 // import cartReducer  from "./features/Orders/CartSlice";
-import drawerSlice from './features/ShareSlice/drawerSlice';
+// import drawerSlice from './features/ShareSlice/drawerSlice';
 
 // const store = configureStore({
 //     reducer :{

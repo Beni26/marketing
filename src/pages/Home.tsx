@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "../ui/Slider";
 import SpecialSale from "../features/SpecialSale";
 import Categories from "../features/Categories";
 import Brand from "../features/Brand";
