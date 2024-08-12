@@ -68,6 +68,7 @@ app.interceptors.response.use(
                 Cookies.remove("token");
                 dispatch(logoutSuccess());
                 window.location.href = '/auth'
+
                 return Promise.reject(error)
                 
             }
