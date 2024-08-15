@@ -10,6 +10,7 @@ interface OptionType {
   value: string;
   image: string;
   index: number;
+  id:string;
 }
 
 interface SearchFieldProps {
@@ -77,7 +78,7 @@ const CustomOption: React.FC<OptionProps<OptionType>> = (props) => {
   const { data, innerRef, innerProps, options } = props;
 
   return (
-    <Link to="/auth">
+    <Link to={`product/${data.id}`}>
       <div
         ref={innerRef}
         {...innerProps}

@@ -33,7 +33,8 @@ const SearchProduct = () => {
         label: item.title,
         value: item.id,
         image: item.firstImage,
-        index:++index
+        index:++index,
+        id:item.id
       }));
       setOptions(newOptions);
       setShouldFetch(false); // Reset fetching flag

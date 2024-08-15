@@ -74,7 +74,7 @@ const Product: React.FC<ProductProps> = ({
           مواد غذایی
         </Link>
         <Link
-          to=""
+          to={`/product/${id}`}
           className="text-[16px] text-accent font-[600] hover:text-primary hover:cursor-pointer"
           title={title}
         >
@@ -89,6 +89,7 @@ const Product: React.FC<ProductProps> = ({
           {toPersianNumbersWithComma(price)} تومان
         </del>
         <div className="absolute w-full flex items-center justify-between mt-3 top-[-23px] group-hover:top-0 group-hover:relative transition-all duration-200">
+
           <div className="flex items-center justify-center invisible group-hover:visible ">
             <button
               className="flex items-center justify-center w-11 h-11 border border-cl_border rounded-r-md bg-white"
@@ -109,6 +110,8 @@ const Product: React.FC<ProductProps> = ({
               -
             </button>
           </div>
+
+          
           <div
             className="bg-gray-100 h-[50px] w-[50px] flex items-center justify-center
        rounded-xl rounded-bl-[28px] font-bold text-gray-400 transition-all

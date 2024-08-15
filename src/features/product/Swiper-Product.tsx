@@ -10,31 +10,20 @@ import { Swiper as SwiperClass } from "swiper/types";
 
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
-const images = [
-  {
-    src: "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
-    zoomSrc:
-      "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", // تصویر با کیفیت بالاتر
-  },
-  {
-    src: "https://dkstatics-public.digikala.com/digikala-products/29576402c3bb3f6fe20ef86a08a035d060c84396_1673702294.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-    zoomSrc:
-      "https://dkstatics-public.digikala.com/digikala-products/29576402c3bb3f6fe20ef86a08a035d060c84396_1673702294.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90", // تصویر با کیفیت بالاتر
-  },
-  {
-    src: "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-    zoomSrc:
-      "https://dkstatics-public.digikala.com/digikala-products/754fb37556ba509ce6df8e6cd285439fac513506_1673437706.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90", // تصویر با کیفیت بالاتر
-  },
-  {
-    src: "https://dkstatics-public.digikala.com/digikala-products/5052e56e58254ac7ebda2fbd38925ad8d1d23713_1673437710.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-    zoomSrc:
-      "https://dkstatics-public.digikala.com/digikala-products/5052e56e58254ac7ebda2fbd38925ad8d1d23713_1673437710.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90", // تصویر با کیفیت بالاتر
-  },
-];
+import { BASE_URL_SITE } from "../../services/httpService";
 
-const SwiperProduct = () => {
+type SwiperProductProps = {
+  firstImage: string;
+  images: string[];
+};
+const SwiperProduct: React.FC<SwiperProductProps> = ({
+  images,
+  firstImage,
+}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
+
+  const safeImages = images ?? []; // Default to empty array if images is null
+  const newImages = Array.from(new Set([firstImage, ...safeImages]));
 
   return (
     <>
@@ -46,16 +35,20 @@ const SwiperProduct = () => {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 border rounded-xl mb-5"
+        className="mySwiper2 border rounded-xl mb-5 w-"
       >
-        {images.map((image, index) => (
+        {newImages.map((image, index) => (
           <SwiperSlide key={index}>
             <InnerImageZoom
-              src={image.src}
+              src={`${BASE_URL_SITE}/Images/${image}`}
               zoomType="hover"
               zoomPreload={true}
               fullscreenOnMobile={false}
               hasSpacer={true}
+              imgAttributes={{
+                className: "!w-[300px]  ",
+              }}
+              className="w-full !h-[500px] flex items-center justify-center"
             />
           </SwiperSlide>
         ))}
@@ -70,9 +63,16 @@ const SwiperProduct = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        {images.map((image, index) => (
-          <SwiperSlide key={index} className="border rounded-xl cursor-pointer">
-            <img src={image.src} alt={`Thumbnail ${index}`} />
+        {newImages.map((image, index) => (
+          <SwiperSlide
+            key={index}
+            className="border rounded-xl cursor-pointer p-2 overflow-hidden"
+          >
+            <img
+              src={`${BASE_URL_SITE}/Images/${image}`}
+              alt={`Thumbnail ${index}`}
+              className="!h-32"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
