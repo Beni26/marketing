@@ -6,7 +6,7 @@ import { BASE_URL_SITE } from "../../services/httpService";
 import { useState } from "react";
 import useManageItemsCart from "../../hooks/useManageItemsCart";
 import { RotatingLines } from "react-loader-spinner";
-
+import placeholderImage from "../../assets/images/placeholderItem.webp";
 type ItemProductProps = {
   brandId: string;
   categoryProductId: string;
@@ -30,9 +30,10 @@ const ItemProduct: React.FC<ItemProductProps> = ({
   priceAfterDiscount,
   id,
   maxCountReserve,
+  categoryProductId,
 }) => {
   const [count, setCount] = useState(1);
-  const { isManaging, manageOrder, } = useManageItemsCart();
+  const { isManaging, manageOrder } = useManageItemsCart();
   const handelProduct = (id: string) => {
     const data = {
       ProductId: id,
@@ -49,7 +50,11 @@ const ItemProduct: React.FC<ItemProductProps> = ({
         <div className="relative w-[203px] h-[155px]">
           <img
             src={`${BASE_URL_SITE}/Images/${firstImage}`}
-            className="cursor-pointer"
+            className="cursor-pointer !object-contain h-full mx-auto"
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src = placeholderImage;
+            }}
           />
           <span className="bg-primary text-white font-bold text-xs p-0.5 pr-2 pl-2 rounded-lg absolute top-0 right-0 leading-[22px]">
             {toPersianNumbersWithComma(discountPercent)} %
@@ -57,7 +62,7 @@ const ItemProduct: React.FC<ItemProductProps> = ({
         </div>
         <div className="flex flex-col gap-3">
           <Link
-            to=""
+            to={`/shop/${categoryProductId}`}
             className="text-[15px] hover:text-link_hover hover:underline hover:cursor-pointer"
           >
             مواد غذایی
@@ -102,9 +107,9 @@ const ItemProduct: React.FC<ItemProductProps> = ({
 
             <div
               className="bg-gray-100 h-[50px] w-[50px] flex items-center justify-center
-       rounded-xl rounded-bl-[28px] font-bold text-gray-400 transition-all
-        ease-in-out duration-500 group-hover:bg-primary group-hover:text-white
-         hover:rounded-bl-xl cursor-pointer relative"
+                rounded-xl rounded-bl-[28px] font-bold text-gray-400 transition-all
+                ease-in-out duration-500 group-hover:bg-primary group-hover:text-white
+                hover:rounded-bl-xl cursor-pointer relative"
               onClick={() => handelProduct(id)}
             >
               <HiMiniShoppingBag />

@@ -15,7 +15,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import ProfileLayout from "./features/Dashboard/Profile/ProfileLayout.tsx";
 import ProtectedRoute from "./ui/ProtectedRoute.tsx";
-import { Dashboard } from './pages/Dashboard';
+import { Dashboard } from "./pages/Dashboard";
 import MyOrders from "./pages/MyOrders.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -33,11 +33,12 @@ function App() {
               <Route element={<AppLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/product/:id" element={<Product />} />
-                <Route path="/shop" element={<Shop />} />
+                <Route path="/shop/:id" element={<Shop />} />
                 <Route path="/contact-us" element={<ContactUs />} />
                 <Route path="/about-us" element={<AboutUs />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="*" element={<NotFound />} />
               </Route>
               <Route
                 element={
@@ -49,8 +50,6 @@ function App() {
                 <Route path="/my-account" element={<Dashboard />} />
                 <Route path="/my-account/orders" element={<MyOrders />} />
               </Route>
-              <Route path="*" element={<NotFound />} />
-
             </Routes>
           </div>
         </QueryClientProvider>

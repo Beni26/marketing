@@ -25,7 +25,7 @@ const Menu: React.FC<MenuProps> = ({ categories = [], isLoading }) => {
               <FiMenu /> دسته بندی محصولات
             </p>
             {!isLoading && categories.length > 0 && (
-              <ul className="absolute right-0 bg-white border rounded-lg w-full top-[56px]  hidden group-hover:block z-10">
+              <ul className="absolute right-0 bg-white border rounded-lg w-full top-[56px]  hidden group-hover:block z-30">
                 {categories.map((category, index) => (
                   <li
                     key={category.id}

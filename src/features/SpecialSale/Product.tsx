@@ -8,6 +8,8 @@ import { RotatingLines } from "react-loader-spinner";
 import useManageItemsCart from "../../hooks/useManageItemsCart";
 import { useDispatch } from "react-redux";
 import { setIsOpenCartDrawer } from "../ShareSlice/drawerSlice";
+import placeholderImage from "../../assets/images/placeholderItem.webp";
+
 
 interface ProductProps {
   title: string;
@@ -35,6 +37,8 @@ const Product: React.FC<ProductProps> = ({
   priceAfterDiscount,
   id,
   maxCountReserve,
+  categoryProductId
+
 }) => {
   const [count, setCount] = useState(1);
   const { isManaging, manageOrder, status } = useManageItemsCart();
@@ -56,11 +60,15 @@ const Product: React.FC<ProductProps> = ({
 
   return (
     <div className="text-right">
-      <div className="relative w-[253px] h-[197px]">
+      <div className="relative w-[253px] h-[197px] mb-2">
         <img
           src={`${BASE_URL_SITE}/Images/${firstImage}`}
           alt={title}
           className="cursor-pointer !object-contain"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; 
+            currentTarget.src = placeholderImage;
+          }}
         />
         <span className="bg-primary text-white font-bold text-xs p-0.5 pr-2 pl-2 rounded-lg absolute top-0 right-0 leading-[22px]">
           {toPersianNumbersWithComma(discountPercent)} %
@@ -68,7 +76,7 @@ const Product: React.FC<ProductProps> = ({
       </div>
       <div className="flex flex-col gap-3">
         <Link
-          to=""
+          to={`/shop/${categoryProductId}`}
           className="text-[15px] hover:text-link_hover hover:underline hover:cursor-pointer"
         >
           مواد غذایی

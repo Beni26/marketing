@@ -1,9 +1,12 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const ProductSkeleton = () => {
+type ProductSkeletonProps = {
+  style?: string;
+};
+const ProductSkeleton: React.FC<ProductSkeletonProps> = ({ style }) => {
   return (
-    <div className="text-right">
+    <div className={`text-right ${style && style} `}>
       <div className="relative w-[253px] h-[197px]">
         <Skeleton height={190} width={253} className="rounded-xl" />
         <span className=" text-white font-bold text-xs p-0.5 pr-2 pl-2 rounded-lg absolute top-0 right-0 leading-[22px] ">
