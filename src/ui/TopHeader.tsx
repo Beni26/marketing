@@ -22,10 +22,13 @@ const TopHeader: React.FC = () => {
   const CheckLogin = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   const dispatch = useDispatch();
-  const data = "off20";
-  const formData = new FormData();
-  formData.append("body", JSON.stringify(data));
-  const { cartItems } = useGetCart({formData,CheckLogin});
+  const discount = {
+    data:null
+  }
+  // const formData = new FormData();
+  // formData.append("body", JSON.stringify(data));
+
+  const { cartItems } = useGetCart({discount,CheckLogin});
   // useEffect(() => {
   //   fetchCart(formData); // Trigger the fetch when the component mounts
   // }, [fetchCart]);

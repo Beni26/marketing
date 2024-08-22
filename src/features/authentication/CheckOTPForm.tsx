@@ -5,10 +5,10 @@ import { checkOtp, login } from "../../services/authService";
 import { CheckOTPFormProps, TokenBody } from "./type";
 import Loading from "../../ui/Loading";
 import { HiArrowRight } from "react-icons/hi";
-import logo from "../../assets/images/logo.png"; 
+import logo from "../../assets/images/logo.png";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { Link, useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { loginSuccess } from "./authSlice";
 import { useDispatch } from "react-redux";
 
@@ -21,10 +21,13 @@ const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
   const [seconds, setSeconds] = useState<number>(10);
   const [isTimerFinished, setIsTimerFinished] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { control, handleSubmit, formState: { errors }, setValue } = useForm<{ otp: string }>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm<{ otp: string }>();
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -58,10 +61,10 @@ const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
       seriall: "imei",
       confirmCode: data.otp,
     };
-    const formData = new FormData();
-    formData.append("body", JSON.stringify(confirmData));
+    // const formData = new FormData();
+    // formData.append("body", JSON.stringify(confirmData));
     try {
-      const { data: confirmSmsResponse } = await mutateAsync(formData);
+      const { data: confirmSmsResponse } = await mutateAsync(confirmData);
 
       try {
         const tokenBody: TokenBody = {
@@ -70,11 +73,11 @@ const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
           appVersion: 1,
           imei: "reza",
         };
-        const formData = new FormData();
-        formData.append("body", JSON.stringify(tokenBody));
+        // const formData = new FormData();
+        // formData.append("body", JSON.stringify(tokenBody));
 
-        const { data: loginResponseData } = await mutateLoginAsync(formData);
-        const { securityKey, token } = loginResponseData.data;
+        const { data: loginResponseData } = await mutateLoginAsync(tokenBody);
+        const { securityKey, token } = loginResponseData;
         Cookies.set("securityKey", securityKey);
         Cookies.set("token", token);
         dispatch(loginSuccess());
@@ -89,14 +92,19 @@ const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
 
   return (
     <div>
-      <div className="flex items-center mb-5">
+      <div className="flex items-center mb-5 gap-2">
         <button className="flex gap-1 text-md group " onClick={onBack}>
           <HiArrowRight className="text-accent group-hover:text-link_hover transition-all duration-300 ease-in-out" />
         </button>
-        <img src={logo} alt="Logo" className="w-48 h-20 m-auto" />
+        <Link to="/">
+          <img src={logo} alt="Logo" className="w-48 h-20 m-auto" />
+        </Link>
       </div>
 
-      <form className="space-y-10 relative" onSubmit={handleSubmit(checkOtpHandeler)}>
+      <form
+        className="space-y-10 relative"
+        onSubmit={handleSubmit(checkOtpHandeler)}
+      >
         <h3 className="font-bold text-accent text-lg mb-1">
           کد تایید را وارد کنید
         </h3>
@@ -131,11 +139,17 @@ const CheckOTPForm: React.FC<CheckOTPFormProps> = ({
             />
           )}
         />
-        {errors.otp && <span className="text-red-500 text-xs absolute w-full text-center flex !m-0 justify-center bottom-24">{errors.otp.message}</span>}
+        {errors.otp && (
+          <span className="text-red-500 text-xs absolute w-full text-center flex !m-0 justify-center bottom-24">
+            {errors.otp.message}
+          </span>
+        )}
         <div className="text-center ">
           <span className="text-nowrap text-xs w-30 blocktext-nowrap  w-30 mb-5 block">
             {isTimerFinished ? (
-              <button onClick={() => onResendOtp({phone:phone})}>ارسال مجدد کد تایید</button>
+              <button onClick={() => onResendOtp({ phone: phone })}>
+                ارسال مجدد کد تایید
+              </button>
             ) : (
               <span>
                 {`${minutes.toString().padStart(2, "0")}:${seconds

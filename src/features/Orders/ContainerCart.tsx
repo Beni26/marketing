@@ -16,10 +16,10 @@ const ContainerCart = () => {
   // const items = useSelector((state: RootState) => state.cart.items);
   const CheckLogin = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-  const data = "off20";
-  const formData = new FormData();
-  formData.append("body", JSON.stringify(data));
-  const { cartItems } = useGetCart({formData,CheckLogin});
+  const discount ={data:null};
+  // const formData = new FormData();
+  // formData.append("body", JSON.stringify(data));
+  const { cartItems } = useGetCart({discount,CheckLogin});
   return (
     <>
       {cartItems.orderItems.length > 0 ? (

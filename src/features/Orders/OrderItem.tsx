@@ -27,9 +27,9 @@ export const OrderItem: React.FC<OrderItemProps> = ({ item, isMobile }) => {
         ProductId: item.productId,
         Count: newCount,
       };
-      const formData = new FormData();
-      formData.append("body", JSON.stringify(data));
-      manageOrder(formData);
+      // const formData = new FormData();
+      // formData.append("body", JSON.stringify(data));
+      manageOrder(data);
     }
   };
   useEffect(() => {

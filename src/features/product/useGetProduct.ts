@@ -2,14 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../services/product";
 
 type useGetProductProps ={
-    formData: FormData;
+  dataProduct: object;
     shouldFetch?:boolean;
-    order?:number
+    order?:number;
+    page?:number
   }
-const useGetProduct = ({ formData,shouldFetch,order }: useGetProductProps) => {
+const useGetProduct = ({ dataProduct,shouldFetch,order,page }: useGetProductProps) => {
     const { data, isLoading: productGetting } = useQuery({
-      queryKey: ['product', formData,order],
-      queryFn: () => getProducts(formData),
+      queryKey: ['product', dataProduct,order,page ],
+      queryFn: () => getProducts(dataProduct),
       enabled:shouldFetch,
       staleTime: 0, // می‌توانید مدت زمان "تازه" بودن داده‌ها را تعیین کنید
 

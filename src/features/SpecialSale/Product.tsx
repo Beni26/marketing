@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { setIsOpenCartDrawer } from "../ShareSlice/drawerSlice";
 import placeholderImage from "../../assets/images/placeholderItem.webp";
 
-
 interface ProductProps {
   title: string;
   firstImage: string;
@@ -37,8 +36,7 @@ const Product: React.FC<ProductProps> = ({
   priceAfterDiscount,
   id,
   maxCountReserve,
-  categoryProductId
-
+  categoryProductId,
 }) => {
   const [count, setCount] = useState(1);
   const { isManaging, manageOrder, status } = useManageItemsCart();
@@ -48,9 +46,9 @@ const Product: React.FC<ProductProps> = ({
       ProductId: id,
       Count: count,
     };
-    const formData = new FormData();
-    formData.append("body", JSON.stringify(data));
-    manageOrder(formData);
+    // const formData = new FormData();
+    // formData.append("body", JSON.stringify(data));
+    manageOrder(data);
   };
   useEffect(() => {
     if (status) {
@@ -61,15 +59,17 @@ const Product: React.FC<ProductProps> = ({
   return (
     <div className="text-right">
       <div className="relative w-[253px] h-[197px] mb-2">
-        <img
-          src={`${BASE_URL_SITE}/Images/${firstImage}`}
-          alt={title}
-          className="cursor-pointer !object-contain"
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null; 
-            currentTarget.src = placeholderImage;
-          }}
-        />
+        <Link to={`/product/${id}`}>
+          <img
+            src={`${BASE_URL_SITE}/Images/${firstImage}`}
+            alt={title}
+            className="cursor-pointer !object-contain"
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src = placeholderImage;
+            }}
+          />
+        </Link>
         <span className="bg-primary text-white font-bold text-xs p-0.5 pr-2 pl-2 rounded-lg absolute top-0 right-0 leading-[22px]">
           {toPersianNumbersWithComma(discountPercent)} %
         </span>
@@ -97,11 +97,12 @@ const Product: React.FC<ProductProps> = ({
           {toPersianNumbersWithComma(price)} تومان
         </del>
         <div className="absolute w-full flex items-center justify-between mt-3 top-[-23px] group-hover:top-0 group-hover:relative transition-all duration-200">
-
           <div className="flex items-center justify-center invisible group-hover:visible ">
             <button
               className="flex items-center justify-center w-11 h-11 border border-cl_border rounded-r-md bg-white"
-              onClick={() => setCount((prev) => prev < maxCountReserve ? prev + 1 : prev)}
+              onClick={() =>
+                setCount((prev) => (prev < maxCountReserve ? prev + 1 : prev))
+              }
             >
               +
             </button>
@@ -119,7 +120,6 @@ const Product: React.FC<ProductProps> = ({
             </button>
           </div>
 
-          
           <div
             className="bg-gray-100 h-[50px] w-[50px] flex items-center justify-center
        rounded-xl rounded-bl-[28px] font-bold text-gray-400 transition-all

@@ -27,13 +27,13 @@ import { getCart } from "../../services/orderService"
 // export default useGetCart;
 
 type useGetCartProps ={
-  formData: FormData;
+  discount: object;
   CheckLogin:boolean;
 }
-const useGetCart = ({ formData, CheckLogin }: useGetCartProps) => {
+const useGetCart = ({ discount, CheckLogin }: useGetCartProps) => {
   const { data, isLoading: cartGetting } = useQuery({
-    queryKey: ['ordersCart', formData],
-    queryFn: () => getCart(formData),
+    queryKey: ['ordersCart', discount],
+    queryFn: () => getCart(discount),
     enabled:CheckLogin
   });
   const cartItems = data || { orderItems: [] }; // مقدار پیش‌فرض به آرایه خالی

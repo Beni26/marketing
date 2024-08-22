@@ -33,13 +33,16 @@ type similarProduct = {
 const ContainerProduct = () => {
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
-
+  const ProductId= {
+    data:id
+  }
   const { gettingProduct, singleProduct } = useGetDetailProduct({
-    id: id as string,
+    ProductId : ProductId as object
   });
   const { isManaging, manageOrder } = useManageItemsCart();
 
   const [count, setCount] = useState(1);
+
 
   useEffect(() => {
     if (id) {
@@ -61,9 +64,9 @@ const ContainerProduct = () => {
       ProductId: singleProduct.id,
       Count: newCount,
     };
-    const formData = new FormData();
-    formData.append("body", JSON.stringify(data));
-    manageOrder(formData);
+    // const formData = new FormData();
+    // formData.append("body", JSON.stringify(data));
+    manageOrder(data);
   };
 
   return (

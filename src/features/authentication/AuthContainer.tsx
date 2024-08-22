@@ -22,11 +22,11 @@ const AuthContainer: React.FC = () => {
       seriall: "imei",
       confirmCode: "",
     };
-    const formData = new FormData();
-    formData.append("body", JSON.stringify(confirmData));
+    // const formData = new FormData();
+    // formData.append("body", JSON.stringify(confirmData));
 
     try {
-      const { data } = await mutateAsync(formData);
+      const { data } = await mutateAsync(confirmData);
       toast.success(data.message);
 
       setStep(2);

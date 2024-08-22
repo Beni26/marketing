@@ -7,8 +7,8 @@ const useManageItemsCart= ()=>{
     const queryClient = useQueryClient()
     const {isPending: isManaging, mutate:manageOrder, data,isSuccess}= useMutation({
         mutationFn:manageItem,
-        onSuccess:(data)=>{
-            toast.success(data.message)
+        onSuccess:()=>{
+            // toast.success(data.message)
             queryClient.invalidateQueries({
                 queryKey: ["ordersCart"],
             });

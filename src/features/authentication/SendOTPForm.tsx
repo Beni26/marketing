@@ -1,8 +1,9 @@
 import React from "react";
 import TextField from "../../ui/TextField";
 import Loading from "../../ui/Loading";
-import { SendOTPFormProps, confirmData } from './type';
+import { SendOTPFormProps, confirmData } from "./type";
 import logo from "../../assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 const SendOTPForm: React.FC<SendOTPFormProps> = ({
   onSubmit,
@@ -13,14 +14,16 @@ const SendOTPForm: React.FC<SendOTPFormProps> = ({
 }) => {
   return (
     <div>
-      <img
-        src={logo}
-        alt="Logo"
-        className="w-48 h-20 m-auto mb-10 space-y-4 block"
-      />
+      <Link to="/">
+        <img
+          src={logo}
+          alt="Logo"
+          className="w-48 h-20 m-auto mb-10 space-y-4 block"
+        />
+      </Link>
 
       <form className="space-y-10 relative" onSubmit={handleSubmit(onSubmit)}>
-      <TextField<confirmData>
+        <TextField<confirmData>
           label="لطفا شماره موبایل خود را وارد کنید:"
           name="phone"
           type="string"

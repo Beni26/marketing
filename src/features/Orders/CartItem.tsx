@@ -27,9 +27,9 @@ const CartItem: React.FC<CartProps> = ({ item }) => {
     const data = {
       ProductId: productId,
     };
-    const formData = new FormData();
-    formData.append("body", JSON.stringify(data));
-    manageOrder(formData);
+    // const formData = new FormData();
+    // formData.append("body", JSON.stringify(data));
+    manageOrder(data);
   };
 
   return (
