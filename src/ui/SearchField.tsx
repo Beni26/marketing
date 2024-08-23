@@ -4,6 +4,7 @@ import truncateText from "../utils/truncateText";
 import { FiSearch } from "react-icons/fi";
 import { BASE_URL_SITE } from "../services/httpService";
 import { Link } from "react-router-dom";
+import placeholderImage  from "../assets/images/placeholderItem.webp";
 
 interface OptionType {
   label: string;
@@ -90,6 +91,10 @@ const CustomOption: React.FC<OptionProps<OptionType>> = (props) => {
           src={`${BASE_URL_SITE}/images/${data.image}`}
           alt={data.label}
           className="w-12 h-12 border p-1 rounded-md"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = placeholderImage;
+          }}
         />
         <span>{truncateText(data.label, 40)}</span>
       </div>

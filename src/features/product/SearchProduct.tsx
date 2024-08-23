@@ -8,22 +8,33 @@ const SearchProduct = () => {
   const [shouldFetch, setShouldFetch] = useState(false);
 
   // به‌روزرسانی formData با inputValue
+  // const dataProduct = {
+  //   type: 0,
+  //   CategoryIds: null,
+  //   brandIds: null,
+  //   isDiscount: false,
+  //   discountPercent: 0,
+  //   productTitle: inputValue, // استفاده از inputValue برای عنوان محصول
+  // };
   const dataProduct = {
-    type: 0,
-    CategoryIds: null,
-    brandIds: null,
-    isDiscount: false,
-    discountPercent: 0,
-    productTitle: inputValue, // استفاده از inputValue برای عنوان محصول
-  };
-
-  const formData = new FormData();
-  formData.append("body", JSON.stringify(dataProduct));
-  formData.append("order", JSON.stringify(0));
-  formData.append("page", JSON.stringify(1));
+    filter: {
+      type: 0,
+      categoryIds: null,
+      brandIds:null,
+      isDiscount: false,
+      discountPercent: 0,
+      productTitle: inputValue,
+    },
+    page: 1,
+    orderType: 0
+  }
+  // const formData = new FormData();
+  // formData.append("body", JSON.stringify(dataProduct));
+  // formData.append("order", JSON.stringify(0));
+  // formData.append("page", JSON.stringify(1));
 
   // استفاده از useGetProduct
-  const { products, productGetting } = useGetProduct({ formData, shouldFetch });
+  const { products, productGetting } = useGetProduct({ dataProduct, shouldFetch });
 
   useEffect(() => {
     // وقتی products تغییر می‌کند، گزینه‌ها را به‌روزرسانی کنید

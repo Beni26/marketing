@@ -42,10 +42,10 @@ const CheckoutForm = () => {
   const selectedProvince = watch("state");
   const CheckLogin = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-  const data = "off20";
+  const discount ={data:null};
   // const formData = new FormData();
   // formData.append("body", JSON.stringify(data));
-  const { cartItems } = useGetCart({ data, CheckLogin });
+  const { cartItems } = useGetCart({ discount, CheckLogin });
 
   useEffect(() => {
     if (selectedProvince) {
