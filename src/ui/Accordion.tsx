@@ -51,7 +51,7 @@ const Accordion: React.FC<AccordionProps> = ({
             <p>{content}</p>
           </section>
         </div>
-      </div>
+      </div>  
     </div>
   );
 };
